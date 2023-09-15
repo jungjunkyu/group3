@@ -36,8 +36,6 @@ public class AdminController {
 	@GetMapping("/detail")
 	public String productDetail(Model model) {	
 		
-		List<ProductVO> list = adminService.getProductList();
-		model.addAttribute(list);
 		return "/admin/detail";
 	}
 	
