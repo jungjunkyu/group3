@@ -80,6 +80,7 @@ public class MemberController {
 		return memberService.checkId(id);
 	}
 	
+	
 }
 
 
