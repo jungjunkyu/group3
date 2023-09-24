@@ -13,4 +13,6 @@ public interface AdminDAO {
 
 	void insertFile(@Param("file") FileVO fileVo);
 
+	boolean insertProduct(@Param("product") ProductVO product);
+
 }

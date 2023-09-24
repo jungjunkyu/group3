@@ -10,4 +10,7 @@
 		insert into `file`(fi_name, fi_pr_code, fi_ori_name) 
 		values(#{file.fi_name},#{file.fi_pr_code},#{file.fi_ori_name})
 	</insert>
+	<insert id="insertProduct">
+		insert into 
+	</insert>
 </mapper>
