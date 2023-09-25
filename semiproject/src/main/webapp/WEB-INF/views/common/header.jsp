@@ -8,10 +8,10 @@
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
-                        <c:if test="${user == null}">
                     	<li class="nav-item">
 		  					<a class="nav-link" href="<c:url value='/board/list'/>">제품</a>
 						</li>
+                        <c:if test="${user == null}">
                       	<li class="nav-item">
 		  					<a class="nav-link" href="<c:url value='/member/signup'/>">회원가입</a>
 						</li>	
@@ -26,6 +26,7 @@
 						    <li class="nav-item"><a class="nav-link" href="<c:url value='/review/insert'/>">임시리뷰작성</a></li>
 						     </c:if>
 						 <c:if test="${user != null && user.me_role == 'ADMIN' }">
+						 
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">관리자 기능</a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
