@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.kh.spring.dao.AdminDAO">
+	
+	<select id="getProductList" resultType="kr.kh.spring.vo.ProductVO">
+		select * from product
+	</select>
+	<insert id="insertProduct">
+		insert file(pr_code, pr_name, pr_detail, pr_price) 
+		values(#{product.pr_code},#{product.pr_name},#{product.pr_detail},#{product.pr_price})
+	</insert>
+	
+	<select id="getProductDetail" resultType="kr.kh.spring.vo.ProductVO">
+		select * from product 
+		where pr_code = #{pr_code}
+	</select>
+	<update id="updateProduct">
+		update board
+		set
+			pr_name = #{product.pr_name},
+			pr_title = #{product.pr_title},
+			pr_price =  #{product.pr_price},
+		where
+			pr_code = #{pr_code}
+	</update>
+</mapper>

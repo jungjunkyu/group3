@@ -24,7 +24,7 @@
 				        	${product.pr_code}
 				        </td>
 				        <td>
-				        	<a href="<c:url value='/admin/detail?${product.pr_code}'/>">${product.pr_name}
+				        	<a href="<c:url value='/admin/detail?pr_code=${product.pr_code}'/>">${product.pr_name}</a>
 				        </td>
 				        <td>
 			 	       		${product.pr_price}
@@ -33,6 +33,7 @@
 		      </c:forEach>
 	    </tbody>
  	</table>
+ 	<a class="btn btn-outline-danger" href="<c:url value='/admin/insert'/>">등록하기</a>
 	<!-- 등록된 제품 테이블로 리스트화 -->
 
 

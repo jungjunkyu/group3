@@ -18,6 +18,9 @@
                       	<li class="nav-item">
 		  					<a class="nav-link" href="<c:url value='/member/login'/>">로그인</a>
 						</li>
+                      	<li class="nav-item">
+		  					<a class="nav-link" href="<c:url value='/admin/list'/>">관리자</a>
+						</li>
 						 </c:if>	
 						 <c:if test="${user != null }">
 						    <li class="nav-item">
@@ -25,10 +28,11 @@
 						     </li>
 						    <li class="nav-item"><a class="nav-link" href="<c:url value='/review/insert'/>">임시리뷰작성</a></li>
 						     </c:if>
+						  
 						 <c:if test="${user != null && user.me_role == 'ADMIN' }">
 						 
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">관리자 기능</a>
+                            <a class="nav-link dropdown-toggle" id="navbarDropdown" href="<c:url value='/admin/list'/>" role="button" data-bs-toggle="dropdown" aria-expanded="false">관리자 기능</a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <li><a class="dropdown-item" href="<c:url value='/board/insert'/>">제품 등록</a></li>
                                 <li><a class="dropdown-item" href="#!">Popular Items</a></li>
