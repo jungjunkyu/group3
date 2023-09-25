@@ -19,7 +19,7 @@
                             <div class="card-body p-4">
                                 <div class="text-center">
                                     <!-- Product name-->
-                                    <h5 class="fw-bolder">옷 이름</h5>
+                                    <h5 class="fw-bolder">${board.bo_name}</h5>
                                     <!-- Product reviews-->
                                     <div class="d-flex justify-content-center small text-warning mb-2">
                                         <div class="bi-star-fill"></div>
@@ -29,7 +29,7 @@
                                         <div class="bi-star-fill"></div>
                                     </div>
                                     <!-- Product price-->
-                                    <span class="text-muted text-decoration-line-through">$가격</span>
+                                    <span class="text-muted text-decoration-line-through">${board.bo_price }원</span>
                                     $할인된가격
                                 </div>
                             </div>

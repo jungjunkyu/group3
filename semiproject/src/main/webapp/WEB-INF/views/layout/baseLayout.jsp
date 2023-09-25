@@ -14,6 +14,8 @@
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css"
 	rel="stylesheet" />
+<!--  css -->
+<link href="<c:url value='/resources/css/styles.css'/>" rel="stylesheet"/>
 
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
@@ -23,7 +25,20 @@
 	src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
-	
+<!-- ajax -->
+<script type="text/javascript">
+	function ajaxJsonToJson(async, type, url, sendObject, successFunc){
+		$.ajax({
+			async : async, 
+			type : type, 
+			url : '<c:url value="/"/>'+url, 
+			data : JSON.stringify(sendObject), 
+			contentType : "application/json; charset=UTF-8", 
+			dataType : "json",
+			success : successFunc
+		});
+	}
+</script>
 <title>스프링</title>
 </head>
 <body>

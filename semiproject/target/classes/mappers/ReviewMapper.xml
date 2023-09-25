@@ -2,11 +2,29 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="kr.kh.spring.dao.CommentDAO">
-
+<mapper namespace="kr.kh.spring.dao.ReviewDAO">
+	<resultMap type="kr.kh.spring.vo.ReviewVO" id="ReviewVO">
+		<id property="re_num" column="re_num"/>
+		<result property="re_star" column="re_star"/>
+		<result property="re_image" column="re_image"/>
+		<result property="re_contents" column="re_contents"/>
+		<result property="re_me_id" column="re_me_id"/>
+		<result property="re_op_num" column="re_op_num"/>
+		<result property="re_time" column="re_time"/>
+		<collection property="fileVoList" ofType="kr.kh.spring.vo.FileVO" column="re_num" select="selectFileList"/>
+	</resultMap>
+	<insert id="insertReview" useGeneratedKeys="true" keyProperty="board.bo_num">
+		insert into review(re_contents,re_star,re_time)
+		values(#{review.re_contents},#{review.re_star},now())
+	</insert>
+	<select id="selectReviewList"
+		resultType="kr.kh.spring.vo.ReviewVO">
+		select * from review
+		order by re_num desc
+		limit #{cri.pageStart}, #{cri.perPageNum}
+	</select>
+	<select id="selectReviewCount" resultType="int">
+		select count(*) from
+		review
+	</select>
 </mapper>
-
-
-
-
-

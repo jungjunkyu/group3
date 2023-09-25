@@ -3,9 +3,7 @@
 	pageEncoding="utf-8"%>
 <!DOCTYPE html>
 <html>
-<head>
-    <link href="/css/style.css" rel="stylesheet"/>
-	
+<head>	
 <meta charset="UTF-8">
 <title>리뷰 작성</title>
 </head>
@@ -14,34 +12,108 @@
 		<div class="container px-4 px-lg-5 mt-5">
 			<!-- Comments Form -->
 			<div class="card my-4">
-				<h5 class="card-header">리뷰</h5>
+				<h5 class="card-header">리뷰 작성</h5>
 				<div class="card-body">
-					<form action="<c:url value='/review/insert'/>" method="post" enctype="multipart/form-data">
-						<fieldset class="mb-3" name="myform" id="myform">
-								<span class="text-bold">별점을 선택해주세요</span> 
-								<input type="radio"	name="reviewStar" value="5" id="rate1"><label
-									for="rate1">★</label> <input type="radio" name="reviewStar"
-									value="4" id="rate2"><label for="rate2">★</label> <input
-									type="radio" name="reviewStar" value="3" id="rate3"><label
-									for="rate3">★</label>
-									 <input type="radio" name="reviewStar"	value="2" id="rate4">
-									<label for="rate4">★</label> <input
-									type="radio" name="reviewStar" value="1" id="rate5"><label
-									for="rate5">★</label>
-							</fieldset>
-						<div class="form-group">
-							<textarea class="form-control" rows=5"></textarea>
-						</div>
-						<div class="form-group">
-							<label>첨부파일</label> <input type="file" class="form-control"
-								name="files">
-						</div>
-						<button type="submit" class="btn btn-primary">작성하기</button>
-					</form>
+					<!-- <form action="<c:url value='/review/insert'/>" method="post" enctype="multipart/form-data">-->
+					<fieldset class="mb-3" name="myform" id="myform">
+						<span class="text-bold">별점을 선택해주세요</span> <input type="radio"
+							value="5" id="rate1" name="re_star" checked> <label
+							for="rate1">★</label> <input type="radio" value="4" id="rate2"
+							name="re_star"> <label for="rate2">★</label> <input
+							type="radio" value="3" id="rate3" name="re_star"> <label
+							for="rate3">★</label> <input type="radio" value="2" id="rate4"
+							name="re_star"> <label for="rate4">★</label> <input
+							type="radio" value="1" id="rate5" name="re_star"> <label
+							for="rate5">★</label>
+					</fieldset>
+					<div class="form-group">
+						<textarea class="form-control" rows=5 " placeholder="리뷰를 입력해주세요."
+							name="re_contents"></textarea>
+					</div>
+
+					<div class="form-group">
+						<input type="file" class="form-control"	name="files" id="files">
+					</div>
+					<button type="submit" class="btn btn-primary btn-review-insert">작성하기</button>
 				</div>
 			</div>
 		</div>
 	</section>
+	<!-- 댓글 기능 자바스크립트 -->
+<script type="text/javascript">
 
+	//로그인하지 않고 댓글 창을 활성화했을 때 처리하기 위한 코드 
+	$('[name=co_contents]').focus(function(){
+		if('${user.me_id}' == ''){
+			if(confirm('댓글을 작성하려면 로그인 해야합니다. 로그인을 하겠습니까?')){
+				location.href = '<c:url value="/member/login"/>';
+			}
+			$(this).blur();
+			return;
+		}
+	});
+	*/
+	//댓글 등록버튼을 클릭했을 때
+	$('.btn-review-insert').click(()=>{
+		
+		//로그인 확인
+		if('${user.me_id}' == ''){
+			if(confirm('댓글을 작성하려면 로그인 해야합니다. 로그인을 하겠습니까?')){
+				location.href = '<c:url value="/member/login"/>';
+			}
+			return;
+		}
+ 	*/
+		let re_contents = $('[name = re_contents]').val();
+		let re_star = $('input:radio[name = re_star]:checked').val();
+		//댓글 내용 확인  
+		if(re_contents == ''){
+			alert('내용을 입력하세요.');
+			return;
+		}
+		let review = {
+				re_star : re_star,
+				re_contents : re_contents
+				re_bo_num : '${board.bo_num}',
+				re_me_id : '${user.me_id}'
+		}
+		
+		//댓글을 등록
+		/*
+		var form = new FormData();
+        form.append("re_star","re_contents", "files", $("#files")[0].files[0] );
+		$.ajax({
+				async : false,
+				method : 'post',
+				url : '<c:url value="/review/insert"/>',
+				processData : false,
+				contentType : false,
+				data : form,
+				success : function(data) {
+					if (data.res) {
+						alert('리뷰 등록 성공');
+						$('[name=re_contents]').val('');
+					} else {
+						alert('리뷰 등록 실패');
+					}
+				}
+			})
+			*/
+		
+		ajaxJsonToJson(false,'post','/review/insert', review,(data)=>{
+			if(data.res){
+				alert('리뷰을 등록했습니다.');
+				$('[name=re_contents]').val('');
+			}else{
+				alert('리뷰를 등록하지 못했습니다.');
+			}
+			
+			cri.page = 1;
+			getReviewList(cri);
+			
+		});
+		
+	});
+</script>
 </body>
 </html>
