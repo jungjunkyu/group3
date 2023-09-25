@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.lang.Nullable;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
@@ -20,37 +21,41 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 	MemberService memberService;
 	
 	@Override
-	public void postHandle(
-		HttpServletRequest request,
-		HttpServletResponse respose,
-		Object handler,
-		ModelAndView mv) {
+	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
+			@Nullable ModelAndView modelAndView) throws Exception {
 		
-		MemberVO user = (MemberVO)mv.getModel().get("user");
-		
-		if(user != null ) {
-			HttpSession session = request.getSession();
-			session.setAttribute("user", user);
-			
-			//자동로그인을 체크한 경우
-			if(user.isAutoLogin()) {
-				//쿠키를 생성하여 필요한 정보를 넣고, 클라이언트한테 전달
-				Cookie cookie = new Cookie("loginCookie", session.getId());
-				cookie.setPath("/");
-				int day = 7;
-				int time = 60 * 60 * 24 * day;
-				cookie.setMaxAge(time);
-				respose.addCookie(cookie);
-				//쿠키에 넣은 필요한 정보를 DB에도 추가 
-				user.setMe_session_id(session.getId());
-				Date date = new Date(System.currentTimeMillis() + time * 1000);
-				user.setMe_session_limit(date);
-				memberService.updateMemberSession(user);
-			}
+		//회원 정보가 있는지 확인
+		MemberVO user = (MemberVO)modelAndView.getModel().get("user");
+		if(user == null) {
+			return;
 		}
+			
+		//있으면 세션에 저장
+		request.getSession().setAttribute("user", user);
+		
+		//자동 로그인 체크를 안했으면 
+		if(!user.isAutoLogin()) {
+			return;
+		}
+		
+		//자동 로그인 체크를 했으면 
+		String sessionId = request.getSession().getId();
+		//쿠키 생성
+		Cookie cookie = new Cookie("edu", sessionId);
+		//쿠키 경로와 만료 시간을 설정
+		cookie.setPath("/");
+		int time = 60 * 60 * 24 * 7; // 60 * 60 * 24 * 7 == 7일을 초로 환산
+		cookie.setMaxAge(time);
+		//화면으로 쿠키 정보를 전달
+		response.addCookie(cookie);
+		
+		//DB 회원 정보에 쿠키 정보를 추가
+		Date date = new Date(System.currentTimeMillis() + time * 1000);
+		user.setMe_session_id(sessionId);
+		user.setMe_session_limit(date);
+		memberService.updateMemberSession(user);
+		
 	}
 }
-
-
 
 

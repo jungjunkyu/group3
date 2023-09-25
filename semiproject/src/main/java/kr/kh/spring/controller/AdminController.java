@@ -39,7 +39,6 @@ public class AdminController {
 		return "/admin/detail";
 	}
 	
-	
 	// 등록완료 시 알럿 뜨고 제품리스트로
 	@PostMapping("/insert")
 	public String productInsert(ProductVO productVo, OptionVO optionVo, FileVO fileVo, MultipartFile[] file) {	
