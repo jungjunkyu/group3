@@ -19,13 +19,13 @@
                 <div class="row gx-4 gx-lg-5 align-items-center">
                     <div class="col-md-6"><img class="card-img-top mb-5 mb-md-0" src="https://image.msscdn.net/images/goods_img/20170905/624932/624932_2_500.jpg" alt="..." /></div>
                     <div class="col-md-6">
-                        <div class="small mb-1">ssssss</div>
-                        <h1 class="display-5 fw-bolder">제품명</h1>
+                        <div class="small mb-1">2028 F/W</div>
+                        <h1 class="display-5 fw-bolder">1987 후드티</h1>
                         <div class="fs-5 mb-5">
-                            <span class="text-decoration-line-through">$가격</span>
-                            <span>$할인가격</span>
+                            <span class="text-decoration-line-through">81,000원</span>
+                            <span>→ 54,000원</span>
                         </div>
-                        <p class="lead">Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium at dolorem quidem modi. Nam sequi consequatur obcaecati excepturi alias magni, accusamus eius blanditiis delectus ipsam minima ea iste laborum vero?</p>
+                        <p class="lead">기모 완전 따뜻한 회색 후드티</p>
                         <div class="d-flex">
                             <input class="form-control text-center me-3" id="inputQuantity" type="num" value="1" style="max-width: 3rem" />
                             <button class="btn btn-outline-dark flex-shrink-0" type="button">
