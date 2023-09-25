@@ -29,7 +29,7 @@
 			
 			<div class="form-group">
 				<label>이미지 등록</label>
-				<input type="file" class="form-control" name="files">
+				<input type="file" class="form-control" name="file">
 			</div>
 			
 			<button class="btn btn-outline-success col-12">등록하기</button>
