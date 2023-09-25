@@ -14,12 +14,12 @@
                             <!-- Sale badge-->
                             <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">Sale</div>
                             <!-- Product image-->
-                            <img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />
+                             <img src="<c:url value='/resources/img/후드.jpg'/>" alt="옷" style="width:229px; height:220px; round:1px;">
                             <!-- Product details-->
                             <div class="card-body p-4">
                                 <div class="text-center">
                                     <!-- Product name-->
-                                    <h5 class="fw-bolder">${board.bo_name}</h5>
+                                    <h5 class="fw-bolder">${board.bo_name}1987 후드티</h5>
                                     <!-- Product reviews-->
                                     <div class="d-flex justify-content-center small text-warning mb-2">
                                         <div class="bi-star-fill"></div>
@@ -29,13 +29,13 @@
                                         <div class="bi-star-fill"></div>
                                     </div>
                                     <!-- Product price-->
-                                    <span class="text-muted text-decoration-line-through">${board.bo_price }원</span>
-                                    $할인된가격
+                                    <span class="text-muted text-decoration-line-through">${board.bo_price }81,000원</span><br>
+                                    54,000원
                                 </div>
                             </div>
                             <!-- Product actions-->
                             <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="<c:url value='/shop/detail' />">상세보기 또는 이미지전체클릭</a></div>
+                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="<c:url value='/shop/detail' />">상세보기&리뷰</a></div>
                             </div>
                         </div>
                     </div>
@@ -49,12 +49,12 @@
                             <!-- Sale badge-->
                             <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">Sale</div>
                             <!-- Product image-->
-                            <img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />
+                            <img src="<c:url value='/resources/img/카디건.jpg'/>" alt="카디건" style="width:229px;">
                             <!-- Product details-->
                             <div class="card-body p-4">
                                 <div class="text-center">
                                     <!-- Product name-->
-                                    <h5 class="fw-bolder">${board.bo_name}</h5>
+                                    <h5 class="fw-bolder">${board.bo_name}카디건</h5>
                                     <!-- Product reviews-->
                                     <div class="d-flex justify-content-center small text-warning mb-2">
                                         <div class="bi-star-fill"></div>
@@ -64,13 +64,13 @@
                                         <div class="bi-star-fill"></div>
                                     </div>
                                     <!-- Product price-->
-                                    <span class="text-muted text-decoration-line-through">${board.bo_price }원</span>
-                                    $할인된가격
+                                    <span class="text-muted text-decoration-line-through">${board.bo_price }209,000원</span><br>
+                                    159,000원
                                 </div>
                             </div>
                             <!-- Product actions-->
                             <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="<c:url value='/shop/detail' />">상세보기 또는 이미지전체클릭</a></div>
+                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="<c:url value='/shop/detail' />">상세보기&리뷰</a></div>
                             </div>
                         </div>
                     </div>
