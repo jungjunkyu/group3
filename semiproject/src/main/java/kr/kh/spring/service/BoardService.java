@@ -6,8 +6,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import kr.kh.spring.pagination.Criteria;
 import kr.kh.spring.vo.BoardVO;
-import kr.kh.spring.vo.MemberVO;
-import kr.kh.spring.vo.OrderVO;
 
 public interface BoardService {
 
@@ -18,6 +16,4 @@ public interface BoardService {
 	int getTotalCount(Criteria cri);
 
 	BoardVO getBoard(Integer bo_num);
-
-	
 }
