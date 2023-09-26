@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
+import kr.kh.spring.vo.OptionVO;
 import kr.kh.spring.vo.ProductVO;
 
 public interface AdminDAO {
@@ -15,5 +16,7 @@ public interface AdminDAO {
 	ProductVO getProductDetail(@Param("pr_code") String pr_code);
 
 	boolean updateProduct(@Param("product") ProductVO product);
+
+	boolean insertOption(@Param("option") OptionVO option);
 
 }

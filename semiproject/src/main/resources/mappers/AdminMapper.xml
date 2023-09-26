@@ -8,21 +8,24 @@
 		select * from product
 	</select>
 	<insert id="insertProduct">
-		insert file(pr_code, pr_name, pr_detail, pr_price) 
+		insert into product(pr_code, pr_name, pr_detail, pr_price) 
 		values(#{product.pr_code},#{product.pr_name},#{product.pr_detail},#{product.pr_price})
 	</insert>
-	
+	<insert id="insertOption">
+		insert into `option`(op_pr_code, op_color, op_amount, op_size) 
+		values(#{option.op_pr_code},#{option.op_color},#{option.op_amount},#{option.op_size})
+	</insert>
 	<select id="getProductDetail" resultType="kr.kh.spring.vo.ProductVO">
 		select * from product 
 		where pr_code = #{pr_code}
-	</select>
+	</select>		
 	<update id="updateProduct">
-		update board
+		update product
 		set
 			pr_name = #{product.pr_name},
-			pr_title = #{product.pr_title},
-			pr_price =  #{product.pr_price},
+			pr_detail = #{product.pr_detail},
+			pr_price =  #{product.pr_price}
 		where
-			pr_code = #{pr_code}
+			pr_code = #{product.pr_code}
 	</update>
 </mapper>

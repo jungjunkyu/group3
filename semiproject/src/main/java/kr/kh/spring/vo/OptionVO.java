@@ -6,8 +6,10 @@ import lombok.Data;
 public class OptionVO {
 	
 	int op_num;
-	String op_name;
+	String op_pr_code;
+	String op_color;
 	int op_amount;
-	String op_pr_code; // ProductVO 외래키
+	int op_size;
+	// ProductVO 외래키
 
 }

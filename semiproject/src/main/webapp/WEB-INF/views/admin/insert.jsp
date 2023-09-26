@@ -10,8 +10,7 @@
 <body>
 	<h1>제품 등록</h1>
 	<form action="<c:url value='/admin/insert'/>" method="post">
-		<div class="form-group">
-			
+		<div class="form-group">	
 			<div class="form-group">
 				<label>제품코드</label>
 				<input type="text" class="form-control" name="pr_code">

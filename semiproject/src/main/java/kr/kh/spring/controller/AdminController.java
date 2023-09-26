@@ -11,10 +11,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import kr.kh.spring.service.AdminService;
+import kr.kh.spring.vo.OptionVO;
 import kr.kh.spring.vo.ProductVO;
 
 @Controller
-@RequestMapping("admin")
+@RequestMapping("/admin")
 public class AdminController {
 	
 	@Autowired
@@ -47,24 +48,43 @@ public class AdminController {
 		}else {
 			System.out.println("실패");
 		}
+		return "/admin/list";
+	}
+	@GetMapping("/insertOption")
+	public String option(Model model, String pr_code) {
+		ProductVO product = adminService.getProductDetail(pr_code);
+		model.addAttribute("product", product);
+		return "/admin/insertOption";
+	}
+	
+	@PostMapping("/insertOption")
+	public String optionProduct(Model model,OptionVO option) {
 		
+		boolean res = adminService.insertOption(option);
+		if(res) {
+			System.out.println("등록");
+		}else {
+			System.out.println("실패");
+		}
 		return "/admin/list";
 	}
 	
+
 	@GetMapping("/update")
 	public String update(Model model, String pr_code) {
 		ProductVO product = adminService.getProductDetail(pr_code);
 		model.addAttribute("product",product);
-		return "/admin/list";
+		return "/admin/update";
 	}
 	
 	@PostMapping("/update")
 	public String updateList(Model model, ProductVO product) {
-		
 		boolean res = adminService.updateProduct(product);
 		if(res) {
 			System.out.println("성공");
-		}else {System.out.println("실패");}
+		}else {
+			System.out.println("실패");
+		}
 		return "/admin/list";
 	}
 	

@@ -10,8 +10,10 @@
 <body>
 	<h1>제품 상세정보</h1>
 	${product}
-	<a href="<c:url value='/product/update?pr_code=${product.pr_code}'/>" class="btn btn-outline-warning">수정</a>
-	<a href="<c:url value='/product/delete?pr_code=${product.pr_code}'/>" class="btn btn-outline-danger">삭제</a>
+	<a href="<c:url value='/admin/update?pr_code=${product.pr_code}'/>" class="btn btn-outline-warning">수정</a>
+	<a href="<c:url value='/admin/delete?pr_code=${product.pr_code}'/>" class="btn btn-outline-danger">삭제</a>
+	<a href="<c:url value='/admin/insertOption?pr_code=${product.pr_code}'/>" class="btn btn-outline-danger">옵션추가</a>
+
 	
 	<!-- 수정 버튼 -->
 	<!-- 등록 자바스크립트 -->
