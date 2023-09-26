@@ -22,5 +22,6 @@ public class MemberVO {
 	
 	private boolean autoLogin;
 
+	
 
 }
