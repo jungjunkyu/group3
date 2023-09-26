@@ -48,6 +48,7 @@ public class ReviewServiceImp implements ReviewService{
 		*/
 		
 	}
+	/*
 	private void uploadFileAndInsert(MultipartFile[] files, int re_num) {
 		if(files == null || files.length == 0) {
 			return;
@@ -65,6 +66,7 @@ public class ReviewServiceImp implements ReviewService{
 			}
 		}
 	}
+	*/
 
 	@Override
 	public List<ReviewVO> getReviewList(Criteria cri,int bo_num) {

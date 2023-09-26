@@ -34,6 +34,7 @@
 					<div class="form-group">
 						<input type="file" class="form-control"	name="files" id="files">
 					</div>
+					<input type="hidden" name="bo_num" value="${bo_num}">
 					<button type="submit" class="btn btn-primary btn-review-insert">작성하기</button>
 				</div>
 			</div>
@@ -54,7 +55,7 @@
 		let review = {
 				re_star : re_star,
 				re_contents : re_contents,
-				re_bo_num : '${board.bo_num},
+				re_bo_num : '${board.bo_num}',
 				re_me_id : '${user.me_id}'
 		}
 

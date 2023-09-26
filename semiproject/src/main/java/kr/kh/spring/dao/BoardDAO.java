@@ -20,6 +20,6 @@ public interface BoardDAO {
 
 	BoardVO selectBoard(@Param("bo_num")Integer bo_num);
 
-	void updateBoardReview(@Param("re_bo_num")int re_bo_num);
+	void updateBoardReview(@Param("bo_num")int re_bo_num);
 
 }

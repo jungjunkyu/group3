@@ -15,16 +15,18 @@
 		<collection property="fileVoList" ofType="kr.kh.spring.vo.FileVO" column="re_num" select="selectFileList"/>
 	</resultMap>
 	<insert id="insertReview">
-		insert into review(re_bo_num,re_contents,re_star,re_time)
-		values(#{review.re_bo_num},#{review.re_contents},#{review.re_star},now())
+		insert into review(re_bo_num,re_me_id,re_contents,re_star,re_time)
+		values(#{review.re_bo_num},#{review.re_me_id},#{review.re_contents},#{review.re_star},now())
 	</insert>
 	<select id="selectReviewList"
 		resultType="kr.kh.spring.vo.ReviewVO">
 		select * from review
+		where re_bo_num = #{bo_num}
 		order by re_num desc
 		limit #{cri.pageStart}, #{cri.perPageNum}
 	</select>
+	
 	<select id="selectReviewCount" resultType="int">
-		select count(*) from where co_bo_num = #{bo_num}
+		select count(*) from review where re_bo_num = #{bo_num}
 	</select>
 </mapper>

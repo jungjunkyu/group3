@@ -16,6 +16,4 @@ public interface ReviewDAO {
 
 	int selectReviewCount(@Param("bo_num") int bo_num );
 
-	void insertFile(@Param("fileVo")FileVO fileVo);
-
 }

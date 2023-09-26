@@ -8,13 +8,12 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.multipart.MultipartFile;
 
 import kr.kh.spring.pagination.Criteria;
 import kr.kh.spring.pagination.PageMaker;
@@ -34,16 +33,18 @@ public class ReviewController {
 	
 	
 	@GetMapping("/review/insert")
-	public String reviewInsert() {
-		return "/review/insert";
+	public String reviewInsert(Model model, Integer bo_num , Criteria cri, HttpSession session) {
+	MemberVO user = (MemberVO) session.getAttribute("user");
+	BoardVO board = boardService.getBoard(bo_num);
+	model.addAttribute("board", board);
+	model.addAttribute("cri", cri);
+	return "/review/insert";
 	}
 	
 	@ResponseBody
 	@PostMapping("/review/insert")
-	public Map<String, Object> insert(@RequestBody ReviewVO review,Integer bo_num,HttpSession session){
+	public Map<String, Object> insert(@RequestBody ReviewVO review){
 		Map<String, Object> map = new HashMap<String, Object>();
-		MemberVO user = (MemberVO) session.getAttribute("user");
-		BoardVO board = boardService.getBoard(bo_num);
 		boolean res = reviewService.insertReview(review); 
 		map.put("res", res);
 		return map;
