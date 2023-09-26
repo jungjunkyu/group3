@@ -10,6 +10,7 @@ public class BoardVO {
 	private String bo_name; 
 	private int bo_price;
 	private String bo_contents;
+	private int bo_review;
 	
 	private List<FileVO> fileVoList;
 }

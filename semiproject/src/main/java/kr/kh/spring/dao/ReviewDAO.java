@@ -12,10 +12,8 @@ public interface ReviewDAO {
 
 	boolean insertReview(@Param("review")ReviewVO review);
 
-	List<ReviewVO> selectReviewList(@Param("cri")Criteria cri);
+	List<ReviewVO> selectReviewList(@Param("cri")Criteria cri,@Param("bo_num")int bo_num);
 
-	int selectReviewCount();
-
-	void insertFile(@Param("fileVo")FileVO fileVo);
+	int selectReviewCount(@Param("bo_num") int bo_num );
 
 }

@@ -8,6 +8,7 @@
 		<result property="bo_name" column="bo_name"/>
 		<result property="bo_price" column="bo_price"/>
 		<result property="bo_contents" column="bo_contents"/>
+		<result property="bo_review" column="bo_review"/>
 		<collection property="fileVoList" ofType="kr.kh.spring.vo.FileVO" column="bo_num" select="selectFileList"/>
 	</resultMap>
 	<insert id="insertBoard" useGeneratedKeys="true" keyProperty="board.bo_num">
@@ -32,4 +33,11 @@
 	<select id="selectBoard" resultMap="BoardVO">
 		select * from board where bo_num = #{bo_num}
 	</select>
+	
+	<update id="updateBoardReview">
+		update board set
+			bo_review = (select count(*) from review where re_bo_num = #{bo_num})
+		where
+			bo_num = #{bo_num}
+	</update>
 </mapper>

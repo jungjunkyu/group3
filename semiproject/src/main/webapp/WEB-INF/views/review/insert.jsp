@@ -34,6 +34,7 @@
 					<div class="form-group">
 						<input type="file" class="form-control"	name="files" id="files">
 					</div>
+					<input type="hidden" name="bo_num" value="${bo_num}">
 					<button type="submit" class="btn btn-primary btn-review-insert">작성하기</button>
 				</div>
 			</div>
@@ -41,29 +42,9 @@
 	</section>
 	<!-- 댓글 기능 자바스크립트 -->
 <script type="text/javascript">
-
-	//로그인하지 않고 댓글 창을 활성화했을 때 처리하기 위한 코드 
-	$('[name=co_contents]').focus(function(){
-		if('${user.me_id}' == ''){
-			if(confirm('댓글을 작성하려면 로그인 해야합니다. 로그인을 하겠습니까?')){
-				location.href = '<c:url value="/member/login"/>';
-			}
-			$(this).blur();
-			return;
-		}
-	});
-	*/
-	//댓글 등록버튼을 클릭했을 때
+	//리뷰 등록버튼을 클릭했을 때
 	$('.btn-review-insert').click(()=>{
 		
-		//로그인 확인
-		if('${user.me_id}' == ''){
-			if(confirm('댓글을 작성하려면 로그인 해야합니다. 로그인을 하겠습니까?')){
-				location.href = '<c:url value="/member/login"/>';
-			}
-			return;
-		}
- 	*/
 		let re_contents = $('[name = re_contents]').val();
 		let re_star = $('input:radio[name = re_star]:checked').val();
 		//댓글 내용 확인  
@@ -73,41 +54,18 @@
 		}
 		let review = {
 				re_star : re_star,
-				re_contents : re_contents
+				re_contents : re_contents,
 				re_bo_num : '${board.bo_num}',
 				re_me_id : '${user.me_id}'
 		}
-		
-		//댓글을 등록
-		/*
-		var form = new FormData();
-        form.append("re_star","re_contents", "files", $("#files")[0].files[0] );
-		$.ajax({
-				async : false,
-				method : 'post',
-				url : '<c:url value="/review/insert"/>',
-				processData : false,
-				contentType : false,
-				data : form,
-				success : function(data) {
-					if (data.res) {
-						alert('리뷰 등록 성공');
-						$('[name=re_contents]').val('');
-					} else {
-						alert('리뷰 등록 실패');
-					}
-				}
-			})
-			*/
-		
+
 		ajaxJsonToJson(false,'post','/review/insert', review,(data)=>{
 			if(data.res){
 				alert('리뷰을 등록했습니다.');
 				$('[name=re_contents]').val('');
 			}else{
 				alert('리뷰를 등록하지 못했습니다.');
-			}
-			
+			}	
 			cri.page = 1;
 			getReviewList(cri);
 			

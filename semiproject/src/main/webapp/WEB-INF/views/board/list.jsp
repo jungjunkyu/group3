@@ -22,14 +22,10 @@
                             <div class="card-body p-4">
                                 <div class="text-center">
                                     <!-- Product name-->
-                                    <h5 class="fw-bolder">${board.bo_name}</h5>
+                                    <h5 class="fw-bolder">${board.bo_name}(${board.bo_review })</h5>
                                     <!-- Product reviews-->
                                     <div class="d-flex justify-content-center small text-warning mb-2">
-                                        <div class="bi-star-fill"></div>
-                                        <div class="bi-star-fill"></div>
-                                        <div class="bi-star-fill"></div>
-                                        <div class="bi-star-fill"></div>
-                                        <div class="bi-star-fill"></div>
+                                        <div class="bi-star-fill"></div><div class="text-primary">()</div>
                                     </div>
                                     <!-- Product price-->                                 
                                     ${board.bo_price }원
@@ -45,5 +41,23 @@
                 </div>
             </div>
         </section>
+         <ul class="pagination justify-content-center">
+  	<c:if test="${pm.prev}">
+	    <li class="page-item">
+	    	<a class="page-link" href="<c:url value='/board/list${pm.cri.getUrl(pm.startPage-1)}'/>">이전</a>
+	    </li>
+    </c:if>
+    
+    <c:forEach begin="${pm.startPage}" end="${pm.endPage}" var="i">
+	    <li class="page-item <c:if test='${pm.cri.page == i}'>active</c:if>">
+	    	<a class="page-link" href="<c:url value='/board/list${pm.cri.getUrl(i)}'/>">${i}</a>
+	    </li>
+    </c:forEach>
+    <c:if test="${pm.next}">
+	    <li class="page-item">
+	    	<a class="page-link" href="<c:url value='/board/list${pm.cri.getUrl(pm.endPage+1)}'/>">다음</a>
+	    </li>
+    </c:if>
+  </ul>
 </body>
 </html>
