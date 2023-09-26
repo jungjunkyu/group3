@@ -33,7 +33,6 @@
                         <p class="lead">${board.bo_contents}</p>
                         <div class="d-flex">
                             <input class="form-control text-center me-3" id="inputQuantity" type="num" value="1" style="max-width: 3rem" />
-
                             <button class="btn btn-outline-dark btn btn-order flex-shrink-0" type="button">
                                 <i class="bi-cart-fill me-1"></i>
                                 주문하기
@@ -42,13 +41,11 @@
                                 <i class="bi-star-fill me-1"></i>
                                 리뷰작성
                             </button>
-
                         </div>
                     </div>
                 </div>
             </div>
         </section>
-
         
         
          <script type="text/javascript">
@@ -79,6 +76,5 @@
         </script>
         
        
-
 </body>
 </html>

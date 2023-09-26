@@ -6,7 +6,5 @@
   <typeAliases>
   	<typeAlias type="kr.kh.spring.vo.MemberVO" alias="MemberVO"/>
   	<typeAlias type="kr.kh.spring.vo.FileVO" alias="FileVO"/>
-
-
   </typeAliases>
 </configuration>

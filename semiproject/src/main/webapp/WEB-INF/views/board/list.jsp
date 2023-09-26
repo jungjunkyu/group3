@@ -45,7 +45,6 @@
                 </div>
             </div>
         </section>
-
          <ul class="pagination justify-content-center">
   	<c:if test="${pm.prev}">
 	    <li class="page-item">
@@ -64,6 +63,5 @@
 	    </li>
     </c:if>
   </ul>
-
 </body>
 </html>

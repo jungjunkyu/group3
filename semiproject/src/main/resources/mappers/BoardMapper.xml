@@ -32,7 +32,6 @@
 	<select id="selectBoard" resultMap="BoardVO">
 		select * from board where bo_num = #{bo_num}
 	</select>
-
 	
 	<update id="updateBoardComment">
 		update board set
@@ -40,5 +39,25 @@
 		where
 			bo_num = #{bo_num}
 	</update>
-
+	
+	<update id="UpdateBoard">
+		update board 
+		set
+			bo_name = #{board.bo_name},
+			bo_price = #{board.bo_price},
+			bo_contents = #{board.bo_contents}
+		where 	
+			bo_num = #{board.bo_num}
+	</update>
+	
+	<update id="UpdateFile">	
+		update file 
+		set
+			fi_name = #{file.fi_name},
+			fi_ori_name = #{file.fi_ori_name}
+		where 
+			fi_bo_num = #{file.fi_bo_num}
+	</update>
+	
+	
 </mapper>

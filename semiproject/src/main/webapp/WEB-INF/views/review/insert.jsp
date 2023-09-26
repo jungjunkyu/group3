@@ -41,11 +41,9 @@
 	</section>
 	<!-- 댓글 기능 자바스크립트 -->
 <script type="text/javascript">
-
 	//리뷰 등록버튼을 클릭했을 때
 	$('.btn-review-insert').click(()=>{
 		
-
 		let re_contents = $('[name = re_contents]').val();
 		let re_star = $('input:radio[name = re_star]:checked').val();
 		//댓글 내용 확인  
@@ -55,12 +53,10 @@
 		}
 		let review = {
 				re_star : re_star,
-
 				re_contents : re_contents,
 				re_bo_num : '${board.bo_num},
 				re_me_id : '${user.me_id}'
 		}
-
 
 		ajaxJsonToJson(false,'post','/review/insert', review,(data)=>{
 			if(data.res){
@@ -68,9 +64,7 @@
 				$('[name=re_contents]').val('');
 			}else{
 				alert('리뷰를 등록하지 못했습니다.');
-
 			}	
-
 			cri.page = 1;
 			getReviewList(cri);
 			

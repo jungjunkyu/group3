@@ -29,9 +29,7 @@ public class BoardController {
 	
 	@GetMapping("/list")
 	public String list(Model model, Criteria cri) {
-
-		cri.setPerPageNum(4);
-
+		cri.setPerPageNum(6);
 		//현재 페이지에 맞는 게시글을 가져와야함
 		List<BoardVO> list = boardService.getBoardList(cri);
 		int totalCount = boardService.getTotalCount(cri);
@@ -65,6 +63,39 @@ public class BoardController {
 		model.addAttribute("board", board);
 		model.addAttribute("cri", cri);
 		return "/board/detail";
+	}
+	
+	@GetMapping("/update")
+	public String update(Model model, Criteria cri) {
+		cri.setPerPageNum(6);
+		//현재 페이지에 맞는 게시글을 가져와야함
+		List<BoardVO> list = boardService.getBoardList(cri);
+		int totalCount = boardService.getTotalCount(cri);
+		PageMaker pm = new PageMaker(3, cri, totalCount);
+		
+		model.addAttribute("pm", pm);
+		model.addAttribute("list", list);
+		return "/board/update";
+	}
+	
+	@GetMapping("/insertUpdate")
+	public String insertUpdate(Model model, int bo_num) {
+		BoardVO board = boardService.getBoard(bo_num);
+		model.addAttribute("board",board);
+		return "/board/insertUpdate";
+	}
+	
+	@PostMapping("/insertUpdate")
+	public String insertUpdatePost(BoardVO board, Model model, MultipartFile[] files2) {
+		Message msg;
+		
+		if(boardService.updateBoard(board, files2)) {
+			msg = new Message("/", "제품을 수정했습니다.");
+		}else {
+			msg = new Message("/board/insertUpdate", "제품을 수정하지 못했습니다.");
+		}
+		model.addAttribute("msg", msg);
+		return "message";
 	}
 }
 

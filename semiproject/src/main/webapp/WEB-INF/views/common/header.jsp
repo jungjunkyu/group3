@@ -11,16 +11,13 @@
                     	<li class="nav-item">
 		  					<a class="nav-link" href="<c:url value='/board/list'/>">제품</a>
 						</li>
-
                          <c:if test="${user == null}">
-
                       	<li class="nav-item">
 		  					<a class="nav-link" href="<c:url value='/member/signup'/>">회원가입</a>
 						</li>	
                       	<li class="nav-item">
 		  					<a class="nav-link" href="<c:url value='/member/login'/>">로그인</a>
 						</li>
-
 						 </c:if>
 						 <c:if test="${user != null }">
 						    <li class="nav-item">
@@ -34,14 +31,13 @@
 						    
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">관리자 기능</a>
-
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <li><a class="dropdown-item" href="<c:url value='/board/insert'/>">제품 등록</a></li>
+                                <li><a class="dropdown-item" href="<c:url value='/board/update'/>">제품 수정</a></li>
                                 <li><a class="dropdown-item" href="#!">Popular Items</a></li>
                                 <li><a class="dropdown-item" href="#!">New Arrivals</a></li>
                             </ul>
                         </li>
-						  </c:if>
                     </ul>
                     
                     <form class="d-flex">

@@ -16,4 +16,6 @@ public interface BoardService {
 	int getTotalCount(Criteria cri);
 
 	BoardVO getBoard(Integer bo_num);
+
+	boolean updateBoard(BoardVO board, MultipartFile[] files2);
 }
