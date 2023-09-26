@@ -9,7 +9,7 @@
  	<section class="py-5">
             <div class="container px-4 px-lg-5 mt-5">
                 <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
-                  <c:forEach items="${list}" var="board">
+                  <c:forEach items="${list }" var="board">
                     <div class="col mb-5">              
                         <div class="card h-100">
                             <!-- Sale badge-->
@@ -32,12 +32,13 @@
                                         <div class="bi-star-fill"></div>
                                     </div>
                                     <!-- Product price-->                                 
-                                    ${board.bo_price }원
+                                    ${board.bo_price}원
                                 </div>
                             </div>
                             <!-- Product actions-->
                             <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="<c:url value='/board/detail${pm.cri.currentUrl}&bo_num=${board.bo_num}'/>">구매하기</a></div>
+                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="<c:url value='/board/insertUpdate${pm.cri.currentUrl}&bo_num=${board.bo_num}'/>">수정하기</a></div>
+                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="<c:url value='/board/delete${pm.cri.currentUrl}&bo_num=${board.bo_num}'/>">삭제하기</a></div>
                             </div>
                         </div>
                     </div>

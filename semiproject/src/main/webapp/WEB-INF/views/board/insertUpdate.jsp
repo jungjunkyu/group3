@@ -6,17 +6,16 @@
 <head>
 </head>
 <body>
-	<h1>제품등록</h1>
+	<h1>제품수정</h1>
 	<form action="<c:url value='/board/insertUpdate'/>" method="post" enctype="multipart/form-data">
 		<div class="form-group">
-			${board}
 			<label>제품 이름</label>
 			<input type ="hidden" name ="bo_num" value ="${board.bo_num}">
-			<input type="text" class="form-control" name="bo_name">
+			<input type="text" class="form-control" name="bo_name" placeholder="${board.bo_name}">
 		</div>
 		<div class="form-group">
 			<label>제품 가격</label>
-			<input type="text" class="form-control" name="bo_price">
+			<input type="text" class="form-control" name="bo_price" placeholder="${board.bo_price}">
 		</div>
 		<div class="form-group">
 			<label>첨부파일</label>
@@ -24,7 +23,7 @@
 		</div>
 		<div class="form-group">
 			<label>제품설명</label>
-			<textarea class="form-control" name="bo_contents"></textarea>
+			<textarea class="form-control" name="bo_contents" placeholder="${board.bo_contents}"></textarea>
 		</div>
 		<button class="btn btn-outline-primary col-12">등록하기</button>
 	</form>

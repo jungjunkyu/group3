@@ -65,7 +65,7 @@ public class BoardController {
 		return "/board/detail";
 	}
 	
-	@GetMapping("/update")
+	@GetMapping("/updateDelete")
 	public String update(Model model, Criteria cri) {
 		cri.setPerPageNum(6);
 		//현재 페이지에 맞는 게시글을 가져와야함
@@ -75,11 +75,11 @@ public class BoardController {
 		
 		model.addAttribute("pm", pm);
 		model.addAttribute("list", list);
-		return "/board/update";
+		return "/board/updateDelete";
 	}
 	
 	@GetMapping("/insertUpdate")
-	public String insertUpdate(Model model, int bo_num) {
+	public String insertUpdate(Model model, Integer bo_num) {
 		BoardVO board = boardService.getBoard(bo_num);
 		model.addAttribute("board",board);
 		return "/board/insertUpdate";
@@ -97,6 +97,20 @@ public class BoardController {
 		model.addAttribute("msg", msg);
 		return "message";
 	}
+	
+	@GetMapping("/delete")
+	public String delete(Model model, Integer bo_num) {
+		Message msg;
+		
+		if(boardService.deleteBoard(bo_num)) {
+			msg = new Message("/", "제품을 삭제했습니다.");
+		}else {
+			msg = new Message("/board/updateDelete", "제품을 수정하지 못했습니다.");
+		}
+		model.addAttribute("msg",msg);
+		return "message";
+	}
+	
 }
 
 

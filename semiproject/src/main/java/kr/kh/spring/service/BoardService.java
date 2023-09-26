@@ -18,4 +18,6 @@ public interface BoardService {
 	BoardVO getBoard(Integer bo_num);
 
 	boolean updateBoard(BoardVO board, MultipartFile[] files2);
+
+	boolean deleteBoard(Integer bo_num);
 }

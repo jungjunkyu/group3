@@ -15,15 +15,22 @@ public interface BoardDAO {
 	void insertFile(@Param("file")FileVO fileVo);
 	
 	List<BoardVO> selectBoardList(@Param("cri")Criteria cri);
-
+	
+	FileVO selectFile(@Param("fi_num") Integer num);
+	
 	int selectBoardCount(@Param("cri")Criteria cri);
 
 	BoardVO selectBoard(@Param("bo_num")Integer bo_num);
 
-	void updateBoardReview(@Param("re_bo_num")int re_bo_num);
+	void updateBoardReview(@Param("re_bo_num")Integer re_bo_num);
 
 	void UpdateBoard(@Param("board") BoardVO board);
 
 	void UpdateFile(@Param("file") FileVO fileVo);
+
+
+	void deleteBoard(@Param("bo_num") Integer bo_num);
+
+	void deleteFile(@Param("fi_num") Integer num);
 
 }
