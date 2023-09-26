@@ -6,7 +6,7 @@
 <head>
 </head>
 <body>
-<h1>로그인</h1>
+	<h1>로그인</h1>
 	<form action="<c:url value='/member/login'/>" method="post">
 		<div class="form-group">
 			<label>아이디</label>

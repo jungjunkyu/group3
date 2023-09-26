@@ -70,7 +70,7 @@
 			getReviewList(cri);
 			
 		});
-		
+		location.href = '<c:url value="/board/list"/>';
 	});
 </script>
 </body>
