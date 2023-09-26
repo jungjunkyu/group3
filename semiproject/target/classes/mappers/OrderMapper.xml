@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.kh.spring.dao.OrderDAO">
+	<resultMap type="kr.kh.spring.vo.OrderVO" id="OrderVO">
+		<id property="bo_num" column="or_num"/>
+		<result property="or_total" column="or_total"/>
+		<result property="or_price" column="or_price"/>
+		<result property="or_use_point" column="or_use_point"/>
+		<result property="or_save_point" column="or_save_point"/>
+		<result property="or_state" column="or_state"/>
+		<result property="or_up_date" column="or_up_date"/>
+		<result property="or_me_id" column="or_me_id"/>
+	</resultMap>
+	<insert id="insertOrder" useGeneratedKeys="true" keyProperty="order">
+	
+		insert into `order`(or_num, or_total, or_me_id)
+		select
+			IFNULL(max(or_num),0)+1,
+			#{order.or_total},#{order.or_me_id}
+		from
+			`order`
+			
+		
+	</insert>
+
+</mapper>
