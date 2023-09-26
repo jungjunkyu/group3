@@ -12,5 +12,6 @@ public class ReviewVO {
 	private String re_image;
 	private String re_me_id;
 	private int re_op_num;
-	
+	private int re_bo_num;
+
 }

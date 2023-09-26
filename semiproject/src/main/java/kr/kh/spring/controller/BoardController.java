@@ -29,7 +29,9 @@ public class BoardController {
 	
 	@GetMapping("/list")
 	public String list(Model model, Criteria cri) {
+
 		cri.setPerPageNum(4);
+
 		//현재 페이지에 맞는 게시글을 가져와야함
 		List<BoardVO> list = boardService.getBoardList(cri);
 		int totalCount = boardService.getTotalCount(cri);

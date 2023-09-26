@@ -7,9 +7,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+
+import kr.kh.spring.dao.BoardDAO;
 import kr.kh.spring.dao.ReviewDAO;
 import kr.kh.spring.pagination.Criteria;
 import kr.kh.spring.util.UploadFileUtils;
+import kr.kh.spring.vo.BoardVO;
+
 import kr.kh.spring.vo.FileVO;
 import kr.kh.spring.vo.ReviewVO;
 
@@ -18,19 +22,28 @@ public class ReviewServiceImp implements ReviewService{
 
 	@Autowired
 	ReviewDAO reviewDao;
+	@Autowired
+	BoardDAO boardDao;
+
 	
 	String uploadPath = "D:\\uploadfiles";
 	
 	@Override
-	public boolean insertReview(ReviewVO review,  MultipartFile[] files) {
-		if(review == null || review.getRe_contents()==null) {
+
+	public boolean insertReview(ReviewVO review) {
+		if(review == null || review.getRe_contents() == null || review.getRe_me_id() == null) {
 			return false;
 		}
-		
+
 		boolean res = reviewDao.insertReview(review);
 		if(!res) {
 			return false;
 		}
+
+		boardDao.updateBoardReview(review.getRe_bo_num());
+		return true; 
+		/*
+
 		//첨부파일을 업로드
 		if(files == null || files.length == 0) {
 			return true;
@@ -39,6 +52,9 @@ public class ReviewServiceImp implements ReviewService{
 		//첨부파일을 서버에 업로드 하고, DB에 저장
 		uploadFileAndInsert(files, review.getRe_num());
 		return true;
+
+		*/
+
 		
 	}
 	private void uploadFileAndInsert(MultipartFile[] files, int re_num) {
@@ -60,16 +76,16 @@ public class ReviewServiceImp implements ReviewService{
 	}
 
 	@Override
-	public List<ReviewVO> getReviewList(Criteria cri) {
+	public List<ReviewVO> getReviewList(Criteria cri,int bo_num) {
 		if(cri == null) {
 			cri = new Criteria(); 
 		}
-		return reviewDao.selectReviewList(cri);
+		return reviewDao.selectReviewList(cri,bo_num);
 	}
 
 	@Override
-	public int getTotalCount() {
-		return reviewDao.selectReviewCount();
+	public int getTotalCount(int bo_num) {
+		return reviewDao.selectReviewCount(bo_num);
 	}
 
 }
