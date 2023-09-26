@@ -38,6 +38,7 @@
                             <!-- Product actions-->
                             <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
                                 <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="<c:url value='/board/insertUpdate${pm.cri.currentUrl}&bo_num=${board.bo_num}'/>">수정하기</a></div>
+                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="<c:url value='/board/delete${pm.cri.currentUrl}&bo_num=${board.bo_num}'/>">삭제하기</a></div>
                             </div>
                         </div>
                     </div>
@@ -48,18 +49,18 @@
          <ul class="pagination justify-content-center">
   	<c:if test="${pm.prev}">
 	    <li class="page-item">
-	    	<a class="page-link" href="<c:url value='/board/list${pm.cri.getUrl(pm.startPage-1)}'/>">이전</a>
+	    	<a class="page-link" href="<c:url value='/board/updateDelete${pm.cri.getUrl(pm.startPage-1)}'/>">이전</a>
 	    </li>
     </c:if>
     
     <c:forEach begin="${pm.startPage}" end="${pm.endPage}" var="i">
 	    <li class="page-item <c:if test='${pm.cri.page == i}'>active</c:if>">
-	    	<a class="page-link" href="<c:url value='/board/list${pm.cri.getUrl(i)}'/>">${i}</a>
+	    	<a class="page-link" href="<c:url value='/board/updateDelete${pm.cri.getUrl(i)}'/>">${i}</a>
 	    </li>
     </c:forEach>
     <c:if test="${pm.next}">
 	    <li class="page-item">
-	    	<a class="page-link" href="<c:url value='/board/list${pm.cri.getUrl(pm.endPage+1)}'/>">다음</a>
+	    	<a class="page-link" href="<c:url value='/board/updateDelete${pm.cri.getUrl(pm.endPage+1)}'/>">다음</a>
 	    </li>
     </c:if>
   </ul>

@@ -33,6 +33,7 @@
                             <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">관리자 기능</a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <li><a class="dropdown-item" href="<c:url value='/board/insert'/>">제품 등록</a></li>
+                                 <li><a class="dropdown-item" href="<c:url value='/board/updateDelete'/>">제품 수정/삭제</a></li>
                               </ul>
                         </li>
                         </c:if>

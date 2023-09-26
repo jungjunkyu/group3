@@ -19,6 +19,9 @@
 		insert file(fi_name, fi_ori_name, fi_bo_num) 
 		values(#{file.fi_name},#{file.fi_ori_name},#{file.fi_bo_num})
 	</insert>
+	<select id="selectFile" resultType="kr.kh.spring.vo.FileVO">
+		select * from file where fi_num  = #{fi_num}
+	</select>
 	<select id="selectFileList" resultType="kr.kh.spring.vo.FileVO">
 		select * from file where fi_bo_num = #{bo_num}
 	</select>
@@ -40,4 +43,38 @@
 		where
 			bo_num = #{bo_num}
 	</update>
+	
+	<update id="updateBoardComment">
+		update board set
+			bo_comment = (select count(*) from comment where co_bo_num = #{bo_num})
+		where
+			bo_num = #{bo_num}
+	</update>
+	
+	<update id="UpdateBoard">
+		update board 
+		set
+			bo_name = #{board.bo_name},
+			bo_price = #{board.bo_price},
+			bo_contents = #{board.bo_contents}
+		where 	
+			bo_num = #{board.bo_num}
+	</update>
+	
+	<update id="UpdateFile">	
+		update `file` 
+		set
+			fi_name = #{file.fi_name},
+			fi_ori_name = #{file.fi_ori_name}
+		where 
+			fi_bo_num = #{file.fi_bo_num}
+	</update>
+	
+	<delete id="deleteBoard">
+		delete from board where bo_num = #{bo_num}
+	</delete>
+	
+	<delete id="deleteFile">
+		delete from `file` where fi_num = #{fi_num}
+	</delete>
 </mapper>

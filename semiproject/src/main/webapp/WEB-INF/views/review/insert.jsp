@@ -45,8 +45,6 @@
 	//리뷰 등록버튼을 클릭했을 때
 	$('.btn-review-insert').click(()=>{
 		
-		let re_contents = $('[name = re_contents]').val();
-		let re_star = $('input:radio[name = re_star]:checked').val();
 		//댓글 내용 확인  
 		if(re_contents == ''){
 			alert('내용을 입력하세요.');
@@ -70,6 +68,7 @@
 			getReviewList(cri);
 			
 		});
+		
 		location.href = '<c:url value="/board/list"/>';
 	});
 </script>
