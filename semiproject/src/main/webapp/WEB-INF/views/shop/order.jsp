@@ -13,6 +13,7 @@
 </style>
 </head>
 <body class="d-flex flex-column min-vh-100">
+
 	<div>
 		<div>
 			<div class="ordTitle mt-5">
@@ -24,15 +25,13 @@
 					<tbody>
 						<tr>
 							<th>이름</th>
-							<td><span id="delivery-address-name">${user.me_name}s							</span></td>
+							<td><span id="delivery-address-name">${user.me_name}
+							</span></td>
 						</tr>
+						<tr>
 						<tr>
 							<th>이메일</th>
 							<td><span id="delivery-emailcheck">${user.me_email} </span></td>
-						</tr>
-						<tr>
-							<th>보유 포인트 </th>
-							<td><span id="delivery-pointcheck">${user.me_point} </span></td>
 						</tr>
 						<tr>
 							<th>배송주소</th>
@@ -46,27 +45,19 @@
 
 		<div class="order-section orderBox mb10 multiple-coupon">
 			<h2 class="checkout__h2 mt-5">결제정보</h2>
-			<form action="<c:url value='/shop/order'/>" method="post">
+			<form>
 				<table class="pay-price">
 					<colgroup>
 						<col width="144">
 						<col>
 					</colgroup>
 					<tbody>
-						<tr>
-							<th>아이디</th>
-							<td><span id="delivery-address-id" name="me_id">${user.me_id}
-							<input type="hidden" name="or_me_id" value="${user.me_id} ">
-							</span></td>
-						</tr>
 						<tr class="payOrder-wrap">
 							<th class="wrap-title" scope="row">상품가격</th>
 							<td>
 								<div class="payOrder">
-									<input type="hidden" name="or_total" value="${board.bo_price }">
-										<strong class="price""> ${board.bo_price }
-										</strong>
-									</div>
+									<strong class="price">${board.pr_price } </strong>
+								</div>
 							</td>
 						</tr>
 
@@ -74,22 +65,20 @@
 							<th class="wrap-title">마일리지</th>
 							<td style="padding-top: 0;">
 								<div>
-									<strong class="price"> <span>보유 : <span
-											name="left_pnt">${user.me_point }</span></span><span class="unit">원</span>
+									<strong class="price"> <span>보유 :
+										<span name="left_pnt">${user.me_point }</span></span><span class="unit">원</span>
 									</strong>
 								</div>
 								<div class="coupangCash-insert">
 									<div class="insert">
-										<span><input type="number" name="or_use_point" id="use_pnt"
-											onchange="changePoint(${board.bo_price },'${user.me_point }')"
-											placeholder="${user.me_point }">
-											</span><span> <input
-											type="checkbox" id="chk_use" onclick="chkPoint(${board.bo_price },'${user.me_point }')">전부
-											사용
-										</span> ( 남은포인트 : <span name="left_pnt" id="left_pnt"></span> 
-		
+										<span><input type="number" name="use_pnt" id="use_pnt"
+											onchange="changePoint(5000,200)" placeholder="${user.me_point }"></span><span>
+											<input type="checkbox" id="chk_use"
+											onclick="chkPoint(5000,200)">전부 사용 
+										</span> ( 남은포인트 : </span><span name="left_pnt" id="left_pnt"></span> )
+
 									</div>
-								
+									<p class="validate-message" style="display: none;"></p>
 								</div>
 							</td>
 						</tr>
@@ -97,13 +86,7 @@
 							<td></td>
 							<td>
 								<p class="bold txt_red">
-									최종 결제 금액 : <span class="bold txt_red" id="result_pnt" >${result_pnt}
-									</span>
-									<input type="hidden" name="or_price" value="${result_pnt}" >
-									<input type="hidden" name="or_save_point" value="${result_pnt}" >
-									
-									
-									
+									최종 결제 금액 : <span class="bold txt_red" id="result_pnt">${result_pnt}</span>
 									원
 								</p>
 							</td>
@@ -117,13 +100,29 @@
 							<td class="inputWrap payType">
 
 								<div id="payBox" class="pay-box">
+									<div class="pay-type-selector">
+
+										<div id="payTypeInfoList" class="balloon-wrap"
+											style="display: none;"></div>
+
+										<div class="type-selector-list-wrapper">
+											<ul id="payTypeList" class="type-selector-list">
+											</ul>
+
+										</div>
+									</div>
+
 
 									<div id="payTypeContent" class="pay-box-contents">
 										<div
 											class="virtualAccountPayBox pay-box-content selected-pay-type">
 											<h3 class="title">무통장입금(가상계좌)</h3>
 
-											<div class="virtual-account-payment pay-type-content">
+											<div class="virtual-account-payment pay-type-content"
+												data-controller="vaPayment"
+												data-controller-data="{
+	        &quot;savedBankKcpCode&quot; : &quot;&quot;
+	    }">
 												<p class="validate-message""=""></p>
 												<ul class="pay-type-sections">
 													<li class="deposit-bank-wrap pay-type-section"><label
@@ -163,7 +162,11 @@
 
 
 															</select>
-																													</div></li>
+															<p class="validate-message" style="display: none;"></p>
+															<p class="pay-box__deactivated-payment-notice"
+																id="virtualAccountPayTypeLimitMsg"></p>
+
+														</div></li>
 													<li class="payBox-section  pay-type-section"><span
 														class="line-title">입금기한</span>
 
@@ -173,7 +176,7 @@
 
 														</div></li>
 													<li class="pay-type-explain">
-														<p class="cash-receipt-explain">현금으로 결제한 모든 금액은
+														<p class="cash-receipt-explain">* 현금으로 결제한 모든 금액은
 															우리은행과 채무지급보증계약을 체결하여 고객님의 안전거래를 보장하고 있습니다.</p>
 													</li>
 												</ul>
@@ -191,22 +194,23 @@
 						</tr>
 					</tbody>
 				</table>
-				<button class="finish">결제하기</button>
 			</form>
 		</div>
 	</div>
+	<button class="finish" onclick="location.href='/spring/member/mypage' ">결제하기
+	</button>
 
 
 
 	<script type="text/javascript">
 		function chkPoint(amt, pnt) {
-			//amt : 최초 결제 금액 / pnt : 사용가능,남은 포인트
+			//amt : 최초 결제 금액 / pnt : 사용가능,남은 포인트 / min : 사용 가능 최소 포인트 / unit : 사용단위
 			var v_point = 0; //사용할 포인트 (input 입력값)
 
 			if (document.getElementById("chk_use").checked) {
 
 				v_point = pnt; //사용할 포인트
-
+				
 				if (pnt > amt) { //결제금액보다 포인트가 더 클 때
 					v_point = amt; //사용할 포인트는 결제금액과 동일하게 설정
 				}
@@ -234,18 +238,7 @@
 
 			}
 			document.getElementById("result_pnt").innerHTML = amt - v_point; //최종 결제금액 = 결제금액 - 사용할 포인트
-			
-			
-			
-			$("[name=or_price]").val(amt - v_point);
-			$("[name=or_save_point]").val((amt - v_point) / 10);
-			
-			
 		}
-		
-		
-		
-		
 	</script>
 
 

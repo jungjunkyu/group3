@@ -34,7 +34,7 @@ body {
 
 .container-body {
 	min-width: 768px;
-	min-height: 100px;
+	min-height: 300px;
 	background-color: #fff;
 	border-radius: 15px;
 	margin-top: 15px;
@@ -65,21 +65,17 @@ body {
 </style>
 </head>
 <body>
-
 	<div class="container-main">
 		<div class="container-head">
-			<div class="consumer-nameMain">아이디 : ${user.me_id }</div>
-			<div class="consumer-name-check">
-			소지 포인트 : ${user.me_point }<br>
-			주소 : ${user.me_addr }${user.me_addr_detail }<br>
-			이메일 : ${user.me_email }
-			</div>
+			<div class="consumer-nameMain">${user.me_id }</div>
+			<div class="consumer-name-check">${user.me_point }</div>
 		</div>
 
 
 		<div class="container-body">
 			<div class="sc-fimazj-0 gKYVxm">
 				<div class="sc-abukv2-0 kcHmyx">
+					<div class="sc-abukv2-1 kSZYgn">2023. 8. 22 주문</div>
 					<div class="sc-abukv2-2 kThsCL">
 						<span class="sc-abukv2-3 gSIruC">주문 상세보기</span>
 					</div>
@@ -91,19 +87,34 @@ body {
 							<col width="">
 						</colgroup>
 						<tbody class="sc-gnmni8-2 hryMPB">
-							<c:forEach items="${list}" var="order">
-								<tr class="sc-gnmni8-3 gmGnuU">
-									<td class="sc-gnmni8-5 hUzAOG">
-										<div class="sc-9cwg9-6 jBCCpd mt-1">
-											<div>주문번호 : ${order.or_num}</div>
-											<div>주문가격 : ${order.or_total}</div>
-											<div>적립포인트 : ${order.or_save_point}</div>
-											<div>구매날짜 : ${order.or_up_date }</div>
+							<tr class="sc-gnmni8-3 gmGnuU">
+								<td class="sc-gnmni8-5 hUzAOG">
+									<div class="sc-ki5ja7-0 bQVZKC">
+										<div class="sc-ki5ja7-1 krPkOP">
+											<span font-weight="bold" class="sc-755zt3-0 hullgd">배송완료</span>
+											<span class="sc-755zt3-0 sc-lcvccu-0 eDgzyT dhoCVo">8/25(금)도착</span>
 										</div>
+									</div>
+									<div class="sc-fe2r96-0 hmCrGF"></div>
+									<div class="sc-1jiyjbz-0 dGiGeF">
+										<div class="sc-gnmni8-9 kCcQTc">
+											<div class="sc-g8964r-0 oRzGt"></div>
+											<div class="sc-9cwg9-1 gLgexz">
+												<div class="sc-9cwg9-2 cNiGzR">
+													<div class="sc-9cwg9-3 eEDOvs">사진 자리</div>
+													<div class="sc-9cwg9-5 bmwSdh">
+														<div class="sc-9cwg9-6 jBCCpd">
+															<div>제품이름</div>
+															<div>가격</div>
 
-									</td>
-								</tr>
-							</c:forEach>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</td>
+							</tr>
 						</tbody>
 					</table>
 				</div>

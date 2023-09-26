@@ -103,8 +103,7 @@
 				}
 				return;
 			}
-			location.href = '<c:url value='/shop/order?bo_num=${board.bo_num}'/>'
-			
+			location.href = '<c:url value="/shop/order"/>'
 			
 		})
 		

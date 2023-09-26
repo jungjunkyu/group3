@@ -7,7 +7,6 @@ import org.apache.ibatis.annotations.Param;
 import kr.kh.spring.pagination.Criteria;
 import kr.kh.spring.vo.BoardVO;
 import kr.kh.spring.vo.MemberVO;
-import kr.kh.spring.vo.OrderVO;
 
 public interface MemberDAO {
 
@@ -18,8 +17,6 @@ public interface MemberDAO {
 	void updateMemberSession(@Param("user")MemberVO user);
 
 	MemberVO selectMemberBySession(@Param("session_id")String session_id);
-
-	
 
 
 }
