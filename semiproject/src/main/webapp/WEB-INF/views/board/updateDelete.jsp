@@ -38,7 +38,7 @@
                             <!-- Product actions-->
                             <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
                                 <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="<c:url value='/board/insertUpdate${pm.cri.currentUrl}&bo_num=${board.bo_num}'/>">수정하기</a></div>
-                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="<c:url value='/board/delete${pm.cri.currentUrl}&bo_num=${board.bo_num}'/>">삭제하기</a></div>
+                                <div class="text-center"><a class="btn btn-outline-danger mt-auto" href="<c:url value='/board/delete${pm.cri.currentUrl}&bo_num=${board.bo_num}'/>">삭제하기</a></div>
                             </div>
                         </div>
                     </div>
