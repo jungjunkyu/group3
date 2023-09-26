@@ -32,7 +32,7 @@
 					</div>
 
 					<div class="form-group">
-						<input type="file" class="form-control"	name="files" id="files">
+						<input type="file" class="form-control"	name="files">
 					</div>
 					<input type="hidden" name="bo_num" value="${bo_num}">
 					<button type="submit" class="btn btn-primary btn-review-insert">작성하기</button>
@@ -44,8 +44,9 @@
 <script type="text/javascript">
 	//리뷰 등록버튼을 클릭했을 때
 	$('.btn-review-insert').click(()=>{
-		
 		//댓글 내용 확인  
+		let re_contents = $('[name = re_contents]').val();
+		let re_star = $('input:radio[name = re_star]:checked').val();
 		if(re_contents == ''){
 			alert('내용을 입력하세요.');
 			return;
@@ -56,7 +57,7 @@
 				re_bo_num : '${board.bo_num}',
 				re_me_id : '${user.me_id}'
 		}
-
+		
 		ajaxJsonToJson(false,'post','/review/insert', review,(data)=>{
 			if(data.res){
 				alert('리뷰을 등록했습니다.');
@@ -68,7 +69,6 @@
 			getReviewList(cri);
 			
 		});
-		
 		location.href = '<c:url value="/board/list"/>';
 	});
 </script>
