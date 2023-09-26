@@ -45,7 +45,7 @@ CREATE TABLE `member` (
 
 LOCK TABLES `member` WRITE;
 /*!40000 ALTER TABLE `member` DISABLE KEYS */;
-INSERT INTO `member` VALUES ('admin123','$2a$10$pNXNkRqGbpQA9QFqb0w2ue/OeA1tRGe9/4WvpuweVYv7zxJ/kCUPq','서울시 강남구','kh정보교육원','admin123@naver.com',0,'관리자','B5EA81680DF08D7DC5A01D96C5F0AEC5',NULL,'ADMIN'),('asd123','$2a$10$7ZHcSaNXGnMRSz9nKp8JPOixKJ1OWGMe8VW7CxUXOvfLbD2N4EB3W','서울시 강남구','테헤란로 130','asd123@naver.com',0,'홍길동',NULL,NULL,'USER'),('qwer123','$2a$10$f7EgBuviqtYYnVO8nyTC3eMnO6P160lWBw2ZLtK/sndWvM5.UEZsK','서울시 강남구','테헤란로 130','qwer123@naver.com',0,'홍길동','808426201D95D97B0283180C0DEF6204','2023-09-29 09:35:02','USER');
+INSERT INTO `member` VALUES ('admin123','$2a$10$pNXNkRqGbpQA9QFqb0w2ue/OeA1tRGe9/4WvpuweVYv7zxJ/kCUPq','서울시 강남구','kh정보교육원','admin123@naver.com',0,'관리자','8E251B3BAF0C6016B04E6FDCFF1D463C',NULL,'ADMIN'),('asd123','$2a$10$7ZHcSaNXGnMRSz9nKp8JPOixKJ1OWGMe8VW7CxUXOvfLbD2N4EB3W','서울시 강남구','테헤란로 130','asd123@naver.com',0,'홍길동',NULL,NULL,'USER'),('qwer123','$2a$10$f7EgBuviqtYYnVO8nyTC3eMnO6P160lWBw2ZLtK/sndWvM5.UEZsK','서울시 강남구','테헤란로 130','qwer123@naver.com',0,'홍길동','1BFE077D86ADF7AE0474DD73F76DAC31',NULL,'USER');
 /*!40000 ALTER TABLE `member` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -58,4 +58,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-09-25 12:30:00
+-- Dump completed on 2023-09-26 17:37:29

@@ -50,9 +50,9 @@
    <!-- Review section-->
 	<section class="mb-5">
 		<div class="card bg-light">
-			<div class="card-body">
+			<div class="card-body w-100 review-list">
 				<!-- 댓글 목록창 -->
-				<div class="d-flex mb-4 w-100 review-list">
+				<div class="d-flex mb-4 review-box" >
 					<div class="flex-shrink-0">
 						<img class="rounded-circle"
 							src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..." />
@@ -62,7 +62,20 @@
 							<label id="star">★</label>()
 						</div>
 						<div class="fw-bold">Commenter Name 2011-11-11</div>
-						리뷰내용
+						<div class="w-100 contents-box">리뷰내용</div>
+					</div>
+				</div>
+				<div class="d-flex mb-4 review-box">
+					<div class="flex-shrink-0">
+						<img class="rounded-circle"
+							src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..." />
+					</div>
+					<div class="ms-3">
+						<div class="fw-bold">
+							<label id="star">★</label>()
+						</div>
+						<div class="fw-bold">Commenter Name 2011-11-11</div>
+						<div class="w-100 contents-box">리뷰내용</div>
 					</div>
 				</div>
 			</div>
@@ -109,11 +122,57 @@
 		
 
 <!-- 리뷰 리스트 스크립트 -->
+		$(document).on('click', '.btn-review-update', function(){
+			revertBox();
+			let reviewBox = $(this).parents('.review-box')
+			changeBox(reviewBox);
+		})
+		$(document).on('click', '.btn-update-complete', function(){
+			let re_num = $(this).parents('.review-box').find('[name=re_num]').val();
+			let re_contents = $(this).parents('.review-box').find('[name=re_contents]').val();
+			
+			if(re_contents == ''){
+				alert('내용을 입력하세요.');
+				return;
+			}
+			
+			let review = {
+				re_num : re_num,
+				re_me_id : '${user.me_id}',
+				re_contents : re_contents 
+			}
+			
+			ajaxJsonToJson(false,'post','/review/update', review ,(data)=>{
+				if(data.res){
+					alert('리뷰를 수정했습니다.')
+				}else{
+					alert('리뷰를 수정하지 못했습니다.')
+				}
+				getReviewList(cri);
+			});
+		});
+		
+      
+      
 let cri = {
 			page : 1,
 			perPageNum : 2,
 	}
 getReviewList(cri);
+function revertBox(){
+	$('[name=re_contents]').remove();
+	$('.btn-update-complete').remove();
+	$('.contents-box').show();
+	$('.btn-group').show();
+}
+function changeBox(reviewBox){
+	let $contentsBox = reviewBox.find('.contents-box');
+	let contents = $contentsBox.text().trim(); 
+	$contentsBox.hide().after('<textarea class="form-control w-100" name="re_contents">'+contents+'</textarea>');
+	let $btnGroup = reviewBox.find('.btn-group');
+	$btnGroup.hide().after('<button class="btn btn-outline-success btn-update-complete">수정완료</button>')
+}
+
 function getReviewList(cri){
 	ajaxJsonToJson(false,'post','/review/list/${board.bo_num}', cri ,(data)=>{
 		//리뷰 리스트 추가
@@ -145,7 +204,7 @@ function createPagination(pm, target){
 function createReviewList(reviewList, target){
 	let str = '';
 	if(reviewList.length == 0){
-		str = '<div class="border rounded-sm border-danger p-3 mt-3">등록된 댓글이 없습니다.</div>';
+		str = '<div class="p-3 mt-3">등록된 리뷰가 없습니다.</div>';
 	}
 	for(review of reviewList){
 		let btnStr = '';
@@ -158,7 +217,7 @@ function createReviewList(reviewList, target){
 			`;
 		}
 		str += `
-		<div class="d-flex mb-4 w-100 review-list">
+		<div class="d-flex mb-4 w-100 review-box">
 			<div class="flex-shrink-0">
 			<input type="hidden" name="re_num" value="\${review.re_num}">
 				<img class="rounded-circle"
@@ -166,16 +225,36 @@ function createReviewList(reviewList, target){
 			</div>
 			<div class="ms-3">
 				<div class="fw-bold"><label id="star">★</label>(\${review.re_star})</div>
-				<div class="fw-bold">\${review.re_me_id}</div>
-				<div class="fw-bold">\${review.re_time}</div>
-				\${review.re_contents}
+				<div class="fw-bold">아이디 : \${review.re_me_id}</div>
+				<div class="fw-bold">작성일 : \${review.re_time_str}</div>
+				<div class="w-100 contents-box">\${review.re_contents}</div>
+				\${btnStr}
 			</div>
-			\${btnStr}
-		</div>`;
+			
+		</div>
+		
+		`;
 	}
 	$(target).html(str);
 }
-		
+//댓글을 삭제하는 함수
+function deleteReview(re_num){
+	let review = { 
+			re_num : re_num,
+			re_me_id : '${user.me_id}',
+			re_bo_num : '${board.bo_num}'
+	}
+	ajaxJsonToJson(false,'post','/review/delete', review ,(data)=>{
+		if(data.res){
+			alert('리뷰를 삭제했습니다.')
+		}else{
+			alert('리뷰를 삭제하지 못했습니다.')
+		}
+		cri.page = 1;
+		getCommentList(cri);
+	});
+}
+
         </script>
         
        

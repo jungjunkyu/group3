@@ -29,18 +29,18 @@ CREATE TABLE `review` (
   `re_contents` longtext NOT NULL,
   `re_star` int NOT NULL,
   `re_image` varchar(50) DEFAULT NULL,
-  `re_me_id` varchar(15) DEFAULT NULL,
+  `re_me_id` varchar(50) NOT NULL,
   `re_op_num` int DEFAULT NULL,
-  `re_time` date DEFAULT NULL,
+  `re_time` datetime DEFAULT CURRENT_TIMESTAMP,
   `re_bo_num` int NOT NULL,
   PRIMARY KEY (`re_num`),
-  KEY `FK_member_TO_reivew_1` (`re_me_id`),
   KEY `FK_option_TO_reivew_1` (`re_op_num`),
   KEY `re_bo_num_idx` (`re_bo_num`),
+  KEY `FK_member_TO_reivew_1` (`re_me_id`),
   CONSTRAINT `FK_member_TO_reivew_1` FOREIGN KEY (`re_me_id`) REFERENCES `member` (`me_id`),
   CONSTRAINT `FK_option_TO_reivew_1` FOREIGN KEY (`re_op_num`) REFERENCES `option` (`op_num`),
   CONSTRAINT `re_bo_num` FOREIGN KEY (`re_bo_num`) REFERENCES `board` (`bo_num`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -49,6 +49,7 @@ CREATE TABLE `review` (
 
 LOCK TABLES `review` WRITE;
 /*!40000 ALTER TABLE `review` DISABLE KEYS */;
+INSERT INTO `review` VALUES (17,'qwewqeqewq',5,NULL,'qwer123',NULL,'2023-09-26 13:41:27',28),(18,'asdfasdfasdf',5,NULL,'qwer123',NULL,'2023-09-26 13:41:31',28),(19,'33333333333333333333333333333333333333',5,NULL,'qwer123',NULL,'2023-09-26 14:07:48',28),(21,'asdadadsaqweqweqwe',5,NULL,'qwer123',NULL,'2023-09-26 14:53:38',31),(22,'111111111111111111111111111111111111111111111111111\n111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111',5,NULL,'qwer123',NULL,'2023-09-26 16:22:05',39),(23,'22222222222222222222222222222222222222222222\n2222222222222222222222222222222222222222222222222222222222222222222222222222222222222222\n22222222222222222222222222222222222222222222',3,NULL,'qwer123',NULL,'2023-09-26 16:22:14',39),(24,'khjkkkkkkkkkkkkkkkkkkkkk',5,NULL,'qwer123',NULL,'2023-09-26 16:24:32',39),(25,'asdsadsadsadsadsad',3,NULL,'qwer123',NULL,'2023-09-26 16:25:22',39),(26,'qwer123qwer123qwer123',5,NULL,'qwer123',NULL,'2023-09-26 16:26:29',38),(27,'dddddddddddddddddddddddddddddddddddddddddd',3,NULL,'qwer123',NULL,'2023-09-26 16:28:03',38);
 /*!40000 ALTER TABLE `review` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -61,4 +62,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-09-25 12:30:00
+-- Dump completed on 2023-09-26 17:37:29

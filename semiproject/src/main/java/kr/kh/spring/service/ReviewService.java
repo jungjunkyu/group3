@@ -16,4 +16,8 @@ public interface ReviewService {
 
 	int getTotalCount(int bo_num);
 
+	boolean deleteReview(ReviewVO review);
+
+	boolean updateReview(ReviewVO review);
+
 }

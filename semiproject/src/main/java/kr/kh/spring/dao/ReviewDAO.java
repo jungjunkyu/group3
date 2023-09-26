@@ -16,4 +16,7 @@ public interface ReviewDAO {
 
 	int selectReviewCount(@Param("bo_num") int bo_num );
 
+	boolean deleteReview(@Param("review")ReviewVO review);
+
+	boolean updateReview(@Param("review")ReviewVO review);
 }

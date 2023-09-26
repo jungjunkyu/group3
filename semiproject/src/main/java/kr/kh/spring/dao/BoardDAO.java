@@ -19,7 +19,18 @@ public interface BoardDAO {
 	int selectBoardCount(@Param("cri")Criteria cri);
 
 	BoardVO selectBoard(@Param("bo_num")Integer bo_num);
-
+	
+	FileVO selectFile(@Param("fi_num") Integer num);
+	
 	void updateBoardReview(@Param("bo_num")int re_bo_num);
+	
+	void UpdateBoard(@Param("board") BoardVO board);
 
+	void UpdateFile(@Param("file") FileVO fileVo);
+
+
+	void deleteBoard(@Param("bo_num") Integer bo_num);
+
+	void deleteFile(@Param("fi_num") Integer num);
+	
 }

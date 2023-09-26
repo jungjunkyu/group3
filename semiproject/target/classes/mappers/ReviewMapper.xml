@@ -29,4 +29,14 @@
 	<select id="selectReviewCount" resultType="int">
 		select count(*) from review where re_bo_num = #{bo_num}
 	</select>
+	<delete id="deleteReview">
+		delete from review where re_num = #{review.re_num} and re_me_id = #{review.re_me_id}
+	</delete>
+	<update id="updateReview">
+		update review 
+		set 
+			re_contents = #{review.re_contents} 
+		where 
+			re_num = #{review.re_num} and re_me_id = #{review.re_me_id}
+	</update>
 </mapper>
