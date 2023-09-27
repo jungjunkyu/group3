@@ -79,6 +79,91 @@ public class BoardServiceImp implements BoardService{
 		}
 		return boardDao.selectBoard(bo_num);
 	}
+	
+	@Override
+	public boolean updateBoard(BoardVO board, MultipartFile[] files) {
+		if(board == null || board.getBo_name()==null) {
+			return false;
+		}
+		
+		boardDao.UpdateBoard(board);
+		if(files == null || files.length == 0) {
+			return true;
+		}
+		updateFileAndUpdateInsert(files, board.getBo_num());	
+		return true;
+	}
+	
+	
+	private void updateFileAndUpdateInsert(MultipartFile[] files, Integer bo_num) {
+		if(files == null || files.length == 0) {
+			return;
+		}
+		for(MultipartFile file : files) {
+			if(file == null || file.getOriginalFilename().length() == 0) {
+				continue;
+			}
+			try {
+				String fi_name = UploadFileUtils.uploadFile(uploadPath, file.getOriginalFilename(), file.getBytes());
+				FileVO fileVo = new FileVO(bo_num, fi_name, file.getOriginalFilename());
+				boardDao.UpdateFile(fileVo);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+
+	private void deleteFile(Integer[] delFiles) {
+		if(delFiles == null || delFiles.length == 0) {
+			return;
+		}
+		
+		for(Integer num : delFiles) {
+			if(num == null) {
+				continue;
+			}
+			//첨부파일 정보를 가져옴
+			FileVO fileVo = boardDao.selectFile(num);
+			if(fileVo == null) {
+				continue;
+			}
+			UploadFileUtils.deleteFile(uploadPath, fileVo.getFi_name());
+			//DB에서 제거 
+			boardDao.deleteFile(num);
+		}
+		
+	}
+
+	@Override
+	public boolean deleteBoard(Integer bo_num) {
+		if(bo_num == null) {
+			return false;
+		}
+		BoardVO board = boardDao.selectBoard(bo_num);
+		
+		if(board == null) {
+			return false;
+		}
+		//첨부파일 삭제
+		List<FileVO> fileList = board.getFileVoList();
+		deleteFile(fileList);
+		//제품 삭제 
+		boardDao.deleteBoard(bo_num);
+		return true;
+	}
+
+	private void deleteFile(List<FileVO> fileList) {
+		if(fileList == null || fileList.size() == 0) {
+			return;
+		}
+		//List<FileVO> => Integer[]
+		Integer [] nums = new Integer[fileList.size()];
+		for(int i = 0; i<nums.length; i++) {
+			nums[i] = fileList.get(i).getFi_num();
+		}
+		deleteFile(nums);
+	}
+
 }
 
 

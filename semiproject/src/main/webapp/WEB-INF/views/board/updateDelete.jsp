@@ -23,18 +23,22 @@
                                 <div class="text-center">
                                     <!-- Product name-->
                                     <h5 class="fw-bolder">${board.bo_name}</h5>
-                                    리뷰개수(${board.bo_review })
                                     <!-- Product reviews-->
                                     <div class="d-flex justify-content-center small text-warning mb-2">
-                                        <div class="bi-star-fill"></div><div class="text-primary">()</div>
+                                        <div class="bi-star-fill"></div>
+                                        <div class="bi-star-fill"></div>
+                                        <div class="bi-star-fill"></div>
+                                        <div class="bi-star-fill"></div>
+                                        <div class="bi-star-fill"></div>
                                     </div>
                                     <!-- Product price-->                                 
-                                    ${board.bo_price }원
+                                    ${board.bo_price}원
                                 </div>
                             </div>
                             <!-- Product actions-->
                             <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="<c:url value='/board/detail${pm.cri.currentUrl}&bo_num=${board.bo_num}'/>">구매하기</a></div>
+                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="<c:url value='/board/insertUpdate${pm.cri.currentUrl}&bo_num=${board.bo_num}'/>">수정하기</a></div>
+                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="<c:url value='/board/delete${pm.cri.currentUrl}&bo_num=${board.bo_num}'/>">삭제하기</a></div>
                             </div>
                         </div>
                     </div>
@@ -45,18 +49,18 @@
          <ul class="pagination justify-content-center">
   	<c:if test="${pm.prev}">
 	    <li class="page-item">
-	    	<a class="page-link" href="<c:url value='/board/list${pm.cri.getUrl(pm.startPage-1)}'/>">이전</a>
+	    	<a class="page-link" href="<c:url value='/board/updateDelete${pm.cri.getUrl(pm.startPage-1)}'/>">이전</a>
 	    </li>
     </c:if>
     
     <c:forEach begin="${pm.startPage}" end="${pm.endPage}" var="i">
 	    <li class="page-item <c:if test='${pm.cri.page == i}'>active</c:if>">
-	    	<a class="page-link" href="<c:url value='/board/list${pm.cri.getUrl(i)}'/>">${i}</a>
+	    	<a class="page-link" href="<c:url value='/board/updateDelete${pm.cri.getUrl(i)}'/>">${i}</a>
 	    </li>
     </c:forEach>
     <c:if test="${pm.next}">
 	    <li class="page-item">
-	    	<a class="page-link" href="<c:url value='/board/list${pm.cri.getUrl(pm.endPage+1)}'/>">다음</a>
+	    	<a class="page-link" href="<c:url value='/board/updateDelete${pm.cri.getUrl(pm.endPage+1)}'/>">다음</a>
 	    </li>
     </c:if>
   </ul>

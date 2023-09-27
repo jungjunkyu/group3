@@ -80,4 +80,25 @@ public class ReviewServiceImp implements ReviewService{
 	public int getTotalCount(int bo_num) {
 		return reviewDao.selectReviewCount(bo_num);
 	}
+
+	@Override
+	public boolean deleteReview(ReviewVO review) {
+		if(review == null || review.getRe_me_id() == null) {
+			return false;
+		}
+		boolean res = reviewDao.deleteReview(review);
+		if(!res) {
+			return false;
+		}
+		boardDao.updateBoardReview(review.getRe_bo_num());
+		return true;
+	}
+
+	@Override
+	public boolean updateReview(ReviewVO review) {
+		if(review == null || review.getRe_contents() == null || review.getRe_me_id() == null) {
+			return false;
+		}
+		return reviewDao.updateReview(review); 
+	}
 }

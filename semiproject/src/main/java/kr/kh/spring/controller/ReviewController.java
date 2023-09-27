@@ -61,6 +61,21 @@ public class ReviewController {
 		map.put("pm", pm);
 		return map;
 	}
-	
+	@ResponseBody
+	@PostMapping("/review/delete")
+	public Map<String, Object> delete(@RequestBody ReviewVO review){
+		Map<String, Object> map = new HashMap<String, Object>();
+		boolean res = reviewService.deleteReview(review);
+		map.put("res", res);
+		return map;
+	}
+	@ResponseBody
+	@PostMapping("/review/update")
+	public Map<String, Object> update(@RequestBody ReviewVO review){
+		Map<String, Object> map = new HashMap<String, Object>();
+		boolean res = reviewService.updateReview(review);
+		map.put("res", res);
+		return map;
+	}
 	
 }
