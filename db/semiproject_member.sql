@@ -1,5 +1,3 @@
-CREATE DATABASE  IF NOT EXISTS `semiproject` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `semiproject`;
 -- MySQL dump 10.13  Distrib 8.0.34, for Win64 (x86_64)
 --
 -- Host: localhost    Database: semiproject
@@ -18,32 +16,35 @@ USE `semiproject`;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `address`
+-- Table structure for table `member`
 --
 
-DROP TABLE IF EXISTS `address`;
+DROP TABLE IF EXISTS `member`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `address` (
-  `ad_num` int NOT NULL,
-  `ad_name` varchar(15) DEFAULT NULL,
-  `ad_addr` varchar(50) DEFAULT NULL,
-  `ad_addr_detail` varchar(50) DEFAULT NULL,
-  `ad_post` char(5) DEFAULT NULL,
-  `ad_me_id` varchar(15) NOT NULL,
-  PRIMARY KEY (`ad_num`),
-  KEY `FK_member_TO_address_1` (`ad_me_id`),
-  CONSTRAINT `FK_member_TO_address_1` FOREIGN KEY (`ad_me_id`) REFERENCES `member` (`me_id`)
+CREATE TABLE `member` (
+  `me_id` varchar(15) NOT NULL,
+  `me_pw` varchar(225) NOT NULL,
+  `me_addr` varchar(50) NOT NULL,
+  `me_addr_detail` varchar(50) NOT NULL,
+  `me_email` varchar(45) NOT NULL,
+  `me_point` int DEFAULT NULL,
+  `me_name` varchar(20) NOT NULL,
+  `me_session_id` varchar(225) DEFAULT NULL,
+  `me_session_limit` datetime DEFAULT NULL,
+  `me_role` varchar(45) DEFAULT 'USER',
+  PRIMARY KEY (`me_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `address`
+-- Dumping data for table `member`
 --
 
-LOCK TABLES `address` WRITE;
-/*!40000 ALTER TABLE `address` DISABLE KEYS */;
-/*!40000 ALTER TABLE `address` ENABLE KEYS */;
+LOCK TABLES `member` WRITE;
+/*!40000 ALTER TABLE `member` DISABLE KEYS */;
+INSERT INTO `member` VALUES ('admin123','$2a$10$pNXNkRqGbpQA9QFqb0w2ue/OeA1tRGe9/4WvpuweVYv7zxJ/kCUPq','서울시 강남구','kh정보교육원','admin123@naver.com',0,'관리자','8E251B3BAF0C6016B04E6FDCFF1D463C',NULL,'ADMIN'),('asd123','$2a$10$7ZHcSaNXGnMRSz9nKp8JPOixKJ1OWGMe8VW7CxUXOvfLbD2N4EB3W','서울시 강남구','테헤란로 130','asd123@naver.com',0,'홍길동',NULL,NULL,'USER'),('qwer123','$2a$10$f7EgBuviqtYYnVO8nyTC3eMnO6P160lWBw2ZLtK/sndWvM5.UEZsK','서울시 강남구','테헤란로 130','qwer123@naver.com',0,'홍길동','1BFE077D86ADF7AE0474DD73F76DAC31',NULL,'USER');
+/*!40000 ALTER TABLE `member` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -55,4 +56,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-09-26 17:37:29
+-- Dump completed on 2023-09-27  9:25:50

@@ -1,5 +1,3 @@
-CREATE DATABASE  IF NOT EXISTS `semiproject` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `semiproject`;
 -- MySQL dump 10.13  Distrib 8.0.34, for Win64 (x86_64)
 --
 -- Host: localhost    Database: semiproject
@@ -18,27 +16,32 @@ USE `semiproject`;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `administartor`
+-- Table structure for table `address`
 --
 
-DROP TABLE IF EXISTS `administartor`;
+DROP TABLE IF EXISTS `address`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `administartor` (
-  `ad_id` varchar(15) NOT NULL,
-  `ad_pw` varchar(255) DEFAULT NULL,
-  `ad_name` varchar(10) DEFAULT NULL,
-  PRIMARY KEY (`ad_id`)
+CREATE TABLE `address` (
+  `ad_num` int NOT NULL,
+  `ad_name` varchar(15) DEFAULT NULL,
+  `ad_addr` varchar(50) DEFAULT NULL,
+  `ad_addr_detail` varchar(50) DEFAULT NULL,
+  `ad_post` char(5) DEFAULT NULL,
+  `ad_me_id` varchar(15) NOT NULL,
+  PRIMARY KEY (`ad_num`),
+  KEY `FK_member_TO_address_1` (`ad_me_id`),
+  CONSTRAINT `FK_member_TO_address_1` FOREIGN KEY (`ad_me_id`) REFERENCES `member` (`me_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `administartor`
+-- Dumping data for table `address`
 --
 
-LOCK TABLES `administartor` WRITE;
-/*!40000 ALTER TABLE `administartor` DISABLE KEYS */;
-/*!40000 ALTER TABLE `administartor` ENABLE KEYS */;
+LOCK TABLES `address` WRITE;
+/*!40000 ALTER TABLE `address` DISABLE KEYS */;
+/*!40000 ALTER TABLE `address` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -50,4 +53,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-09-25 12:30:01
+-- Dump completed on 2023-09-27  9:25:50

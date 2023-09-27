@@ -1,5 +1,3 @@
-CREATE DATABASE  IF NOT EXISTS `semiproject` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `semiproject`;
 -- MySQL dump 10.13  Distrib 8.0.34, for Win64 (x86_64)
 --
 -- Host: localhost    Database: semiproject
@@ -18,28 +16,32 @@ USE `semiproject`;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `product`
+-- Table structure for table `point`
 --
 
-DROP TABLE IF EXISTS `product`;
+DROP TABLE IF EXISTS `point`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `product` (
-  `pr_code` char(6) NOT NULL,
-  `pr_name` varchar(20) DEFAULT NULL,
-  `pr_detail` longtext,
-  `pr_price` int DEFAULT NULL,
-  PRIMARY KEY (`pr_code`)
+CREATE TABLE `point` (
+  `po_num` int NOT NULL,
+  `po_content` varchar(30) DEFAULT NULL,
+  `po_amount` int DEFAULT NULL,
+  `po_me_id` varchar(15) NOT NULL,
+  `po_savedate` date DEFAULT NULL,
+  `po_usedate` date DEFAULT NULL,
+  PRIMARY KEY (`po_num`),
+  KEY `FK_member_TO_point_1` (`po_me_id`),
+  CONSTRAINT `FK_member_TO_point_1` FOREIGN KEY (`po_me_id`) REFERENCES `member` (`me_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `product`
+-- Dumping data for table `point`
 --
 
-LOCK TABLES `product` WRITE;
-/*!40000 ALTER TABLE `product` DISABLE KEYS */;
-/*!40000 ALTER TABLE `product` ENABLE KEYS */;
+LOCK TABLES `point` WRITE;
+/*!40000 ALTER TABLE `point` DISABLE KEYS */;
+/*!40000 ALTER TABLE `point` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -51,4 +53,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-09-26 17:37:29
+-- Dump completed on 2023-09-27  9:25:50
