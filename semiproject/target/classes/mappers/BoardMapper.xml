@@ -44,13 +44,6 @@
 			bo_num = #{bo_num}
 	</update>
 	
-	<update id="updateBoardComment">
-		update board set
-			bo_comment = (select count(*) from comment where co_bo_num = #{bo_num})
-		where
-			bo_num = #{bo_num}
-	</update>
-	
 	<update id="UpdateBoard">
 		update board 
 		set
